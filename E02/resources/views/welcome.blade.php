@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html dir="rtl" lang="fa">
     <head>
@@ -36,7 +35,7 @@
         <!-- Header-->
         <header class="masthead d-flex align-items-center">
             <div class="container px-4 px-lg-5 text-center">
-                <h1 class="mb-1 text-white" style="font-family: 'IRANYekanX'">مزرعه طلایی</h1>
+                <h1 class="mb-1 text-white" style="font-family: 'IRANYekanX'"> {!! $siteName !!} </h1>
                 <h3 class="mb-5 text-white"><em>با مدیریت حاج دایی</em></h3>
                 <a class="btn btn-primary btn-xl" href="#about">سفارش</a>
             </div>

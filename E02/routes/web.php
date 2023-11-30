@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::view('/', 'welcome',  ['siteName' => '<a href="/">مزرعه شیدا</a>']);
+
+Route::get('/book/{id}/page/{number}', function ($id, $number) {
+    return 'Book '.$id.' - Page ' . $number;
 });
+
 Route::get('/about', function () {
     return view('about');
 });
