@@ -17,7 +17,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone number</label>
-                        <input name="phone" type="tel" class="form-control" id="phone" placeholder="+989112746075">
+                        <input name="mobile" type="tel" class="form-control" id="phone" placeholder="+989112746075">
                     </div>
                     <div class="mb-3">
                         <label for="fullName" class="form-label">Full name</label>
