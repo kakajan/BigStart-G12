@@ -34,4 +34,23 @@
             </div>
         </div>
     </div>
+    <div class="container " id="messageArea">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                @foreach ($messages as $message)
+                {{ $message->fullName }}<br>
+                {{ $message->moible }}<br>
+                {{ $message->message }}
+                <a href="/edit-message/{{ $message->id }}">Edit</a>
+                <form method="POST" action="/delete-messages/{{ $message->id }}" >
+                    @csrf
+                    @method('delete')
+                    <input type="submit" value="delete">
+                </form>
+                <hr>
+                @endforeach
+            </div>
+        </div>
+
+    </div>
 @endsection

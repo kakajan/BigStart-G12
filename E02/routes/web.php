@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Models\Message;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +25,25 @@ Route::get('/about', function () {
     return view('about');
 });
 Route::get('/contact', function () {
-    return view('contact');
+    $messages = Message::all()->sortByDesc('created_at');
+    return view('contact', ['messages' => $messages]);
 });
+Route::delete('delete-messages/{id}', function ($id){
+    $message = Message::find($id);
+    $message->delete();
+    return redirect('/contact#messageArea');
+});
+Route::get('edit-message/{id}', function ($id) {
+    $message = Message::find($id);
+    return view('editMessage', ['message'=>$message]);
+});
+Route::put('edit-message/{id}', function (Request $request, $id) {
+    $message = Message::find($id);
+    $message->message = $request->message;
+    $message->save();
+    return redirect('/contact#messageArea');
+});
+
 Route::post('/send-message', function (Request $request) {
     $message = new Message;
     $message->email = $request->email;
@@ -47,15 +63,16 @@ Route::post('/send-message', function (Request $request) {
     //     'fullName' => $request->fullName,
     //     'message' => $request->message,
     // ]);
-
-    return
-    '<ul>' .
-    '<li>' . $request->email . '</li>' .
-    '<li>' . $request->mobile . '</li>' .
-    '<li>' . $request->fullName . '</li>' .
-    '<li>' . $request->message . '</li>' .
-        '</ul>';
+    return redirect('/contact');
+    // return
+    // '<ul>' .
+    // '<li>' . $request->email . '</li>' .
+    // '<li>' . $request->mobile . '</li>' .
+    // '<li>' . $request->fullName . '</li>' .
+    // '<li>' . $request->message . '</li>' .
+    //     '</ul>';
 });
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
