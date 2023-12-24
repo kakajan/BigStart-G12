@@ -1,9 +1,10 @@
 @extends('layouts.main')
+@section('bootstrap','https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css')
 @section('content')
 <div class="container">
         <div class="row justify-content-center">
             <div class="col-6">
-                <form action="/edit-message/{{ $message->id}}" method="post">
+                <form action="/messages/{{ $message->id}}" method="post">
                     @csrf
                     @method('put')
                     <div class="mb-3">

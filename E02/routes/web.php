@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,58 +26,14 @@ Route::get('/book/{id}/page/{number}', function ($id, $number) {
 Route::get('/about', function () {
     return view('about');
 });
-Route::get('/contact', function () {
-    $messages = Message::all()->sortByDesc('created_at');
-    return view('contact', ['messages' => $messages]);
-});
-Route::delete('delete-messages/{id}', function ($id){
-    $message = Message::find($id);
-    $message->delete();
-    return redirect('/contact#messageArea');
-});
-Route::get('edit-message/{id}', function ($id) {
-    $message = Message::find($id);
-    return view('editMessage', ['message'=>$message]);
-});
-Route::put('edit-message/{id}', function (Request $request, $id) {
-    $message = Message::find($id);
-    $message->message = $request->message;
-    $message->save();
-    return redirect('/contact#messageArea');
-});
-
-Route::post('/send-message', function (Request $request) {
-    $message = new Message;
-    $message->email = $request->email;
-    $message->mobile = $request->mobile;
-    $message->fullName = $request->fullName;
-    $message->message = $request->message;
-    $message->save();
-    // Message::insert([
-    //     'email' => $request->email,
-    //     'mobile' => $request->mobile,
-    //     'fullName' => $request->fullName,
-    //     'message' => $request->message,
-    // ]);
-    // DB::table('messages')->insert([
-    //     'email' => $request->email,
-    //     'mobile' => $request->phone,
-    //     'fullName' => $request->fullName,
-    //     'message' => $request->message,
-    // ]);
-    return redirect('/contact');
-    // return
-    // '<ul>' .
-    // '<li>' . $request->email . '</li>' .
-    // '<li>' . $request->mobile . '</li>' .
-    // '<li>' . $request->fullName . '</li>' .
-    // '<li>' . $request->message . '</li>' .
-    //     '</ul>';
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::resource('/messages', MessageController::class);
+
+Route::resource('/blogs', BlogController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -18,10 +18,10 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
         rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="@yield('bootstrap')"
         integrity="sha384-DOXMLfHhQkvFFp+rWTZwVlPVqdIhpDVYT9csOnHSgWQWPX0v5MCGtjCJbY6ERspU" crossorigin="anonymous">
-    <link href="css/custom.css" rel="stylesheet" />
+    <link href="/css/custom.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -34,7 +34,7 @@
                 <li class="sidebar-nav-item"><a href="#about">About</a></li>
                 <li class="sidebar-nav-item"><a href="#services">Services</a></li>
                 <li class="sidebar-nav-item"><a href="#portfolio">Portfolio</a></li>
-                <li class="sidebar-nav-item"><a href="/contact">Contact</a></li>
+                <li class="sidebar-nav-item"><a href="/messages">Contact</a></li>
             </ul>
         </nav>
         <!-- Header-->
@@ -83,7 +83,7 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="/js/scripts.js"></script>
 </body>
 
 </html>

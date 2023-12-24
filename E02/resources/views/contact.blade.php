@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-6">
-                <form action="/send-message" method="post">
+                <form action="/messages" method="post">
                     @csrf
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
@@ -41,8 +41,8 @@
                 {{ $message->fullName }}<br>
                 {{ $message->moible }}<br>
                 {{ $message->message }}
-                <a href="/edit-message/{{ $message->id }}">Edit</a>
-                <form method="POST" action="/delete-messages/{{ $message->id }}" >
+                <a href="/messages/{{ $message->id }}/edit">Edit</a>
+                <form method="POST" action="/messages/{{ $message->id }}" >
                     @csrf
                     @method('delete')
                     <input type="submit" value="delete">
