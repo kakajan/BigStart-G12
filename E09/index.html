@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <form action="http://localhost:8000/api/messages" method="post">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input name="email" type="email" class="form-control" id="email" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone number</label>
+                        <input name="mobile" type="tel" class="form-control" id="phone" placeholder="+989112746075">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Full name</label>
+                        <input name="fullName" type="text" class="form-control" id="fullName" placeholder="Full Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Enter your message</label>
+                        <textarea name="message" class="form-control" id="message" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" value="Submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

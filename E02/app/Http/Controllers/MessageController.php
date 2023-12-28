@@ -50,7 +50,7 @@ class MessageController extends Controller
         //     'fullName' => $request->fullName,
         //     'message' => $request->message,
         // ]);
-        return redirect('/messages');
+        return response()->json(['status'=>true, 'message'=>$message]);
         // return
         // '<ul>' .
         // '<li>' . $request->email . '</li>' .
