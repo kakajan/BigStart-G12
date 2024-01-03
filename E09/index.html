@@ -1,37 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-6">
-                <form action="http://localhost:8000/api/messages" method="post">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input name="email" type="email" class="form-control" id="email" placeholder="name@example.com">
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Phone number</label>
-                        <input name="mobile" type="tel" class="form-control" id="phone" placeholder="+989112746075">
-                    </div>
-                    <div class="mb-3">
-                        <label for="fullName" class="form-label">Full name</label>
-                        <input name="fullName" type="text" class="form-control" id="fullName" placeholder="Full Name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Enter your message</label>
-                        <textarea name="message" class="form-control" id="message" rows="3"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <input type="submit" value="Submit" />
-                    </div>
-                </form>
-            </div>
-        </div>
+  </head>
+  <body>
+    <div id="app">
+        <input v-model="message" />
+        <br>
+        {{ message }}
     </div>
-</body>
+    <!-- <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <form onsubmit="event.preventDefault();postData()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                name="email"
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="name@example.com"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone number</label>
+              <input
+                name="mobile"
+                type="tel"
+                class="form-control"
+                id="phone"
+                placeholder="+989112746075"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full name</label>
+              <input
+                name="fullName"
+                type="text"
+                class="form-control"
+                id="fullName"
+                placeholder="Full Name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Enter your message</label>
+              <textarea
+                name="message"
+                class="form-control"
+                id="message"
+                rows="3"
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <input type="submit" value="Submit" />
+            </div>
+          </form>
+          <div id="display"></div>
+        </div>
+      </div>
+    </div> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      const messages = [];
+      function postData() {
+        $.ajax({
+          type: "POST",
+          url: "http://localhost:8000/api/messages",
+          data: {
+            fullName: document.getElementById("fullName").value,
+            message: document.getElementById("message").value,
+            mobile: document.getElementById("phone").value,
+            email: document.getElementById("email").value,
+          },
+          success: function (data) {
+            if (data.status) {
+              messages.unshift(data.message);
+              show();
+            } else {
+              alert("Error");
+            }
+          },
+          error: function (xhr, status, error) {
+            console.error(xhr);
+          },
+        });
+      }
+      function fetchMessages() {
+        $.ajax({
+          type: "GET",
+          url: "http://localhost:8000/api/messages",
+          success: function (data) {
+            for (const key in data) {
+              messages.push(data[key]);
+            }
+            show();
+          },
+          error: function (xhr, status, error) {
+            console.error(xhr);
+          },
+        });
+      }
+      fetchMessages();
+      function show() {
+        let helper = "";
+        messages.forEach((val) => {
+          helper += `${val.id}-${val.fullName}${val.email}${val.mobile}${val.message}<br>`;
+        });
+        const messageDisplay = document.getElementById("display");
+        messageDisplay.innerHTML = helper;
+      }
+    </script> -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const { createApp, ref } = Vue;
+
+      createApp({
+        setup() {
+          const message = ref("Hello vue!");
+          return {
+            message,
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
 </html>
